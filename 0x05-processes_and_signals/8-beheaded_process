@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 #kill the invinvible
-grep -f 7-highlander | kill -9
+grep -f 7-highlander | xargs kill -9
