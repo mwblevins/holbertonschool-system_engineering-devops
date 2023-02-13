@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#Display POrts
+netstat -tulp --program
