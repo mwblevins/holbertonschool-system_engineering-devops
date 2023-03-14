@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#configuring all dis stuff i guess
+Host school
+    HostName 15.236.141.45
+    User ubuntu
