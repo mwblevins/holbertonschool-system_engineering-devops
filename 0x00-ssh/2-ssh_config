@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 #configuring all dis stuff i guess
-Host school
+Host 5591-web-01
     HostName 15.236.141.45
     User ubuntu
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no
