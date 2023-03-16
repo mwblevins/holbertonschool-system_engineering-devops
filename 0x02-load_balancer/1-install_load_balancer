@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#Update and Install nginx web server
+#Update and Install haproxy web server
 sudo apt-get -y update
 sudo apt-get -y upgrade
 sudo apt-get install haproxy -y
@@ -16,7 +16,7 @@ backend http_back
     mode http
     balance roundrobin
     server 5591-web-01 15.236.141.45:80 check
-    server 5591-web-02 15.188.238.18:80 check
+    server 5591-web-02 15.188.238.187:80 check
 EOF
 
 #restart haproxy
