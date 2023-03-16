@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#Update and Install nginx
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install nginx
+mkdir -p /etc/nginx/html
+touch /etc/nginx/html/index.html /etc/nginx/html/404.html
+echo "Hello World!" > /etc/nginx/html/index.html
+echo "Ceci n'est pas une page" > /etc/nginx/html/404.html
+printf %s "server {
+    listen 80;
+    add_header X-Served-By $HOSTNAME;
+    location / {
+        root /etc/nginx/html;
+        index index.html;
+    }
+    location /redirect {
+        return 301 https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley;
+    }
+    error_page 404 /404.html;
+}" > /etc/nginx/sites-available/default
+sudo service nginx restart
