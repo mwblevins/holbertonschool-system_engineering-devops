@@ -5,7 +5,7 @@ sudo apt-get -y upgrade
 sudo apt-get install haproxy -y
 
 #config
-sudo sed -i 's/^\(ENABLED=\).*/\1true/' /etc/default/haproxy
+echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
 sudo cat <<EOF | sudo tee -a /etc/haproxy/haproxy.cfg
 frontend http_front
     bind *:80
@@ -15,10 +15,9 @@ frontend http_front
 backend http_back
     mode http
     balance roundrobin
-    server 5591-web-01 15.236.141.45 check
-    server 5591-web-02 15.188.238.187 check
+    server 5591-web-01 15.236.141.45:80 check
+    server 5591-web-02 15.188.238.18:80 check
 EOF
 
 #restart haproxy
 sudo service haproxy restart
-sudo update-rc.d haproxy defaults
