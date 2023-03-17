@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#Install ufw firewall. Only allows incoming through certain ports
+sudo apt-get update -y
+sudo apt install ufw
+
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+#allow these
+sudo ufw allow 22 #SSH
+sudo ufw allow 443 #HTTPS
+sudo ufw allow 80 #HTTP
+
+sudo ufw enable
+#verify status
+sudo ufw status
