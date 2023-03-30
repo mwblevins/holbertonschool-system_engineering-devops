@@ -5,6 +5,10 @@ about their TODO list progress"""
 import requests
 import sys
 
+import urllib.request
+import json
+import sys
+
 # Check if employee ID is provided as argument
 if len(sys.argv) != 2:
     print("Please provide employee ID as argument")
@@ -14,13 +18,13 @@ if len(sys.argv) != 2:
 employee_id = sys.argv[1]
 
 # Define the API endpoint URL
-url = f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}"
+url = "https://jsonplaceholder.typicode.com/todos?userId=" + employee_id
 
 # Make a request to the API endpoint and get the response
-response = requests.get(url)
+response = urllib.request.urlopen(url).read().decode()
 
 # Convert the response to JSON format
-json_data = response.json()
+json_data = json.loads(response)
 
 # Get the employee name
 employee_name = json_data[0]["name"]
@@ -35,6 +39,8 @@ for task in json_data:
         completed_task_titles.append(task["title"])
 
 # Print the employee TODO list progress
-print(f"Employee {employee_name} is done with {num_completed_tasks}/{total_num_tasks} tasks:")
+print("Employee " + employee_name +
+      " is done with " + str(num_completed_tasks) +
+      "/" + str(total_num_tasks) + " tasks:")
 for title in completed_task_titles:
-    print(f"\t {title}")
+    print("\t" + title)
